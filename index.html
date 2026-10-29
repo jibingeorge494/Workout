@@ -1,8 +1,13 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
 <title>Jibin Daniel’s Workout Plan</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<style>[hidden]{display:none!important}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0}</style>
 <style>
 /* Layout: black training log — sticky day tabs; Block 1 warm-up, then one block per exercise with per-set Start/Finish rows; day totals at the end; live status bar fixed at the bottom */
 :root{
@@ -73,7 +78,7 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--
 
 /* set rows */
 .setlist{display:grid;gap:8px}
-.setrow{display:flex;align-items:center;gap:10px;min-height:54px;padding:6px 6px 6px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2)}
+.setrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:54px;padding:6px 6px 6px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2)}
 .setrow .nm{font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:.04em;display:flex;align-items:center;gap:8px;flex:none;min-width:84px}
 .box{width:22px;height:22px;border-radius:50%;border:2px solid var(--dim);display:grid;place-items:center;flex:none}
 .box svg{width:14px;height:14px;opacity:0}
@@ -131,7 +136,7 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--
 .stat.w b{color:var(--done)} .stat.r b{color:var(--accent)}
 .tblwrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.92rem;font-variant-numeric:tabular-nums}
-th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
+th,td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--line)}
 th{font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem;color:var(--muted)}
 td.n,th.n{text-align:right;white-space:nowrap}
 tfoot td{font-weight:600;border-bottom:none}
@@ -196,6 +201,56 @@ footer{margin-top:28px;display:grid;gap:14px;color:var(--muted);font-size:.92rem
 .btn.primary{background:var(--accent);color:#000;border-color:var(--accent)}
 .btn.fin{background:var(--done);color:#000;border-color:var(--done)}
 
+/* weights */
+.unitbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.unitbar .lbl2{font-size:.78rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{appearance:none;border:none;background:var(--panel);color:var(--muted);height:36px;min-width:56px;padding:0 14px;cursor:pointer;
+  font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#000}
+.seg button:focus-visible,.wgt-in:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrow{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:2px 6px 4px 30px}
+.wgt-in,.reps-in{height:40px;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--fg);padding:0 10px;
+  font-family:var(--display);font-weight:700;font-size:1.25rem;font-variant-numeric:tabular-nums;text-align:right}
+.wgt-in{width:6.4rem}
+.reps-in{width:4.2rem}
+.wgt-in::placeholder,.reps-in::placeholder{color:var(--dim)}
+.wrow .u{font-family:var(--display);font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.wrow .x{font-family:var(--display);font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-size:.9rem}
+.pb{background:var(--accent);color:#000;border-radius:99px;padding:2px 10px;font-family:var(--display);font-weight:800;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.exsum .tw b{color:var(--fg)}
+td.up,.up{color:var(--done)} td.down,.down{color:var(--warn)}
+.wgt-in:focus-visible,.reps-in:focus-visible,.note-in:focus-visible,.picker select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hist{display:grid;gap:8px;background:var(--panel-2);border-radius:12px;padding:10px 12px}
+.hist .lbl{font-family:var(--display);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hist .pbline{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;font-variant-numeric:tabular-nums}
+.hist .pbline b{font-family:var(--display);font-size:1.3rem;color:var(--accent);font-weight:700}
+.sess{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:.92rem;font-variant-numeric:tabular-nums}
+.sess li{display:flex;justify-content:space-between;gap:10px}
+.sess li span{color:var(--muted);white-space:nowrap}
+.sess li b{font-weight:600;text-align:right}
+.note-in{width:100%;height:42px;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--fg);padding:0 12px;font:inherit;font-size:.95rem}
+.note-in::placeholder{color:var(--dim)}
+td small{display:block;color:var(--muted);font-size:.78rem;font-weight:500}
+.prog{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.prog li{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--panel-2);border-radius:12px;padding:10px 12px}
+.prog .pn{min-width:0}
+.prog .pn b{font-weight:600;display:block}
+.prog .pn span{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.prog .chg{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.prog .chg small{display:block;color:var(--muted);font-size:.78rem;font-weight:500}
+.chg{font-weight:700}
+.chg.up{color:var(--done)} .chg.down{color:var(--warn)} .chg.same{color:var(--muted);font-weight:600}
+.picker{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.picker select{appearance:none;background:var(--panel-2);color:var(--fg);border:1px solid var(--line);border-radius:10px;height:42px;padding:0 12px;font:inherit;max-width:100%}
+.lchart{width:100%;height:auto;display:block}
+.lchart text{fill:var(--muted);font-size:9px;font-family:var(--body)}
+.lchart .ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.lchart .dot{fill:var(--accent)}
+.lchart .pbdot{fill:var(--done)}
+.lchart .grid{stroke:var(--line);stroke-width:1}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.logmsg{margin-top:8px;min-height:1.3em}
 /* figure strokes */
 .limb{stroke:var(--fg);stroke-width:6;stroke-linecap:round;fill:none}
 .limb.far{stroke:var(--dim)}
@@ -212,14 +267,26 @@ footer{margin-top:28px;display:grid;gap:14px;color:var(--muted);font-size:.92rem
 .ghost{opacity:.22}
 @media (prefers-reduced-motion:reduce){.fill{transition:none}}
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <header>
     <div class="eyebrow">Monday – Friday · Sets × Reps</div>
-    <h1>Jibin Daniel’s Workout Plan</h1>
+    <div class="titlebox">
+      <h1 id="planName">Jibin Daniel’s Workout Plan</h1>
+      <button class="editname" id="editName" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 14l1-4 8-8 3 3-8 8-4 1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Edit name</button>
+      <form class="nameform" id="nameForm" hidden>
+        <label for="nameInput">Plan name</label>
+        <input id="nameInput" type="text" maxlength="60" autocomplete="off">
+        <div class="nameactions"><button class="btn primary" type="submit">Save</button><button class="btn" id="nameCancel" type="button">Cancel</button></div>
+      </form>
+    </div>
     <div class="weekbar">
       <div class="meta"><span id="weekLabel">This week</span><span id="weekCount">0 / 0 sets</span></div>
       <div class="track"><div class="fill" id="weekFill"></div></div>
+    </div>
+    <div class="unitbar"><span class="lbl2">Weight unit</span>
+      <div class="seg" role="group" aria-label="Weight unit"><button type="button" data-unit="kg" aria-pressed="false">kg</button><button type="button" data-unit="lb" aria-pressed="true">lb</button></div>
     </div>
   </header>
 
@@ -229,7 +296,10 @@ footer{margin-top:28px;display:grid;gap:14px;color:var(--muted);font-size:.92rem
 
   <footer>
     <div class="note"><b>Training note:</b> Choose loads that let you complete each set with controlled technique. Stop if an exercise causes pain.</div>
-    <button class="reset" id="reset" type="button">Clear this week's records</button>
+    <div class="note"><b>Your weight log</b> keeps every weight, rep count and note. It is saved in this browser, on this device only, and the weekly clear never touches it. Export a backup now and then, and import it to restore or move it to another device.
+      <div class="tools"><button class="reset" id="exportBtn" type="button">Export weight log</button><button class="reset" id="importBtn" type="button">Import weight log</button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+      <div class="logmsg" id="logMsg" role="status"></div></div>
+    <button class="reset" id="reset" type="button">Clear this week's times</button>
   </footer>
 </div>
 
@@ -255,8 +325,9 @@ const FIGS={
     items:[{t:'db',at:'w2',far:1},{t:'db',at:'w1'}]},
   incline:{tag:"Bench 30–45°",
     eq:'<line x1="61" y1="58" x2="85" y2="103" class="eqpad"/><line x1="84" y1="107" x2="118" y2="107" class="eqpad"/><line x1="100" y1="111" x2="100" y2="141" class="eq"/>',
-    A:{h:[62,46],n:[68,58],p:[92,100],k1:[120,100],f1:[122,138],t1:[131,139],e1:[64,75],w1:[74,57]},
-    B:{e1:[80,40],w1:[90,22]},
+    A:{h:[62,46],n:[68,58],p:[92,100],k1:[120,100],f1:[122,138],t1:[131,139],e1:[77,73],w1:[76,54]},
+    B:{e1:[72,40],w1:[76,23]},
+    ik:{l1:17.5,l2:19},
     items:[{t:'db',at:'w2',far:1},{t:'db',at:'w1'}]},
   lateral:{tag:"Front view",front:1,
     A:{...FRONT_LEGS,h:[100,28],n:[100,40],s1:[88,44],s2:[112,44],e1:[86,64],w1:[87,84],e2:[114,64],w2:[113,84]},
@@ -334,7 +405,15 @@ const FIGS={
 };
 const FAR=[['e1','e2',[4,-2]],['w1','w2',[4,-2]],['k1','k2',[-3,-2]],['f1','f2',[-3,0]],['t1','t2',[-3,0]]];
 function complete(p,front){const o={...p}; if(!front) FAR.forEach(([a,b,d])=>{ if(o[a]&&!o[b]) o[b]=[o[a][0]+d[0],o[a][1]+d[1]]; }); return o;}
-for(const key in FIGS){const f=FIGS[key]; f.PA=complete(f.A,f.front); f.PB=complete({...f.A,...f.B},f.front);}
+/* two-link arm solver: keeps the upper arm and forearm at fixed lengths while the wrist moves on a straight line */
+function ikArm(P,ik){
+  const s=P.s1||P.n, w=P.w1, dx=w[0]-s[0], dy=w[1]-s[1], d=Math.hypot(dx,dy)||1;
+  const dc=Math.min(ik.l1+ik.l2-0.01,Math.max(Math.abs(ik.l1-ik.l2)+0.01,d)), ux=dx/d, uy=dy/d;
+  const a=(ik.l1*ik.l1-ik.l2*ik.l2+dc*dc)/(2*dc), h=Math.sqrt(Math.max(0,ik.l1*ik.l1-a*a));
+  P.e1=[s[0]+ux*a-uy*h, s[1]+uy*a+ux*h];
+  P.e2=[P.e1[0]+4,P.e1[1]-2]; P.w2=[w[0]+4,w[1]-2];
+}
+for(const key in FIGS){const f=FIGS[key]; f.PA=complete(f.A,f.front); f.PB=complete({...f.A,...f.B},f.front); if(f.ik){ ikArm(f.PA,f.ik); ikArm(f.PB,f.ik); }}
 
 const L=(a,b,c)=>`<line x1="${a[0].toFixed(1)}" y1="${a[1].toFixed(1)}" x2="${b[0].toFixed(1)}" y2="${b[1].toFixed(1)}" class="${c}"/>`;
 function item(it,P){
@@ -368,7 +447,7 @@ function body(P,front,items){
 const lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
 function mix(A,B,t){const o={};for(const key in A)o[key]=lerp(A[key],B[key]||A[key],t);return o;}
 const FLOOR='<line x1="4" y1="142" x2="196" y2="142" class="floor"/>';
-const frame=(f,t)=>(f.eq||'')+FLOOR+body(mix(f.PA,f.PB,t),f.front,f.items);
+const frame=(f,t)=>{ const P=mix(f.PA,f.PB,t); if(f.ik) ikArm(P,f.ik); return (f.eq||'')+FLOOR+body(P,f.front,f.items); };
 const still=f=>(f.eq||'')+FLOOR+'<g class="ghost">'+body(f.PA,f.front,f.items)+'</g>'+body(f.PB,f.front,f.items);
 
 /* ---------- Muscles ---------- */
@@ -481,7 +560,7 @@ const DAYS=[
  ]},
  {id:'fri',abbr:'FRI',name:'Friday',focus:'Legs & Chest',warm:'5 minutes of stretching',ex:[
   {n:'Supported Chest Press Machine',sets:3,reps:'10–12',fig:'chestmachine',cues:['Adjust the seat so handles line up with mid-chest.','Push forward until your arms are almost straight.','Return slowly and feel your chest stretch.'],avoid:'Locking your elbows hard or lifting your back off the pad.'},
-  {n:'Leg Extensions',sets:3,reps:'12–15',fig:'legext',cues:['Pad on your lower shins, back against the seat.','Straighten your legs and squeeze your thighs.','Lower slowly.'],avoid:'Kicking the weight up fast.'},
+  {n:'Leg Extensions',log:'Leg Extension Machine',sets:3,reps:'12–15',fig:'legext',cues:['Pad on your lower shins, back against the seat.','Straighten your legs and squeeze your thighs.','Lower slowly.'],avoid:'Kicking the weight up fast.'},
   {n:'Lying Leg Curls',sets:3,reps:'12–15',fig:'lyingcurl',cues:['Lie face down, knees just past the bench edge, pad above your heels.','Curl your heels toward your glutes.','Lower slowly to straight legs.'],avoid:'Hips lifting off the bench.'},
   {n:'Cable Overhead Tricep Extensions',sets:3,reps:'12–15',fig:'overhead',cues:['Face away from the pulley, rope behind your head, one foot forward.','Keep your elbows up and close to your head.','Straighten your arms forward and up, then bend back slowly.'],avoid:'Elbows flaring wide or arching your back.'}
  ]}
@@ -499,6 +578,81 @@ const KEY='wp2-'+WS.getFullYear()+'-'+(WS.getMonth()+1)+'-'+WS.getDate();
 let S={rec:{},A:null};
 try{ const v=JSON.parse(localStorage.getItem(KEY)||'null'); if(v&&v.rec) S=v; }catch(e){}
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+/* ---------- Units ---------- */
+let UNIT='lb';
+try{ const u=localStorage.getItem('wp2-unit'); if(u==='kg'||u==='lb') UNIT=u; }catch(e){}
+const LB=2.2046226218;
+const toDisp=kg=>UNIT==='lb'?kg*LB:kg;
+const fromDisp=v=>Math.round((UNIT==='lb'?v/LB:v)*1000)/1000;   // stored in kg
+const numStr=v=>String(Math.round(v*10)/10);
+const fmtWt=kg=>kg>0?numStr(toDisp(kg))+' '+UNIT:'—';
+const fmtVol=kg=>Math.round(toDisp(kg)).toLocaleString()+' '+UNIT;
+const noWeight=e=>e.fig==='walk'||e.fig==='stretch';
+const logName=e=>e.log||e.n;
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function setUnit(u){
+  UNIT=u; try{ localStorage.setItem('wp2-unit',u); }catch(e){}
+  document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.unit===u)));
+  refresh();
+}
+
+/* ---------- Permanent weight log ----------
+   Stored on its own key, apart from the weekly timers, so "Clear this week's times" never touches it.
+   LOG.ex[exerciseName][YYYY-MM-DD] = { s: [[kg, reps], ...] }   (one entry per set, kg stored in kilograms)
+   LOG.notes[exerciseName] = "seat 4, machine 12" */
+const LOGKEY='wp-log-v1';
+let LOG={ex:{},notes:{},bak:null,mig:0};
+try{ const v=JSON.parse(localStorage.getItem(LOGKEY)||'null');
+  if(v&&typeof v==='object'){ if(v.ex&&typeof v.ex==='object') LOG.ex=v.ex; if(v.notes&&typeof v.notes==='object') LOG.notes=v.notes; LOG.bak=v.bak||null; LOG.mig=v.mig||0; } }catch(e){}
+function saveLog(){ try{ localStorage.setItem(LOGKEY,JSON.stringify(LOG)); }catch(e){} }
+const p2=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+const fromIso=t=>{const [y,m,d]=t.split('-').map(Number);return new Date(y,m-1,d);};
+const dateOf=dayId=>{const d=new Date(WS); d.setDate(d.getDate()+DAYS.findIndex(x=>x.id===dayId)); return iso(d);};
+const fmtDate=(t,wd)=>fromIso(t).toLocaleDateString(undefined,wd?{weekday:'short',month:'short',day:'numeric'}:{month:'short',day:'numeric'});
+const sessHas=se=>!!(se&&se.s&&se.s.some(x=>x&&x[0]>0));
+const sessTop=se=>Math.max(0,...se.s.map(x=>x?x[0]:0));
+const sessVol=se=>se.s.reduce((t,x)=>t+(x&&x[0]>0&&x[1]>0?x[0]*x[1]:0),0);
+const getSess=(name,date)=>(LOG.ex[name]&&LOG.ex[name][date])||null;
+const sessDates=name=>Object.keys(LOG.ex[name]||{}).filter(d=>sessHas(LOG.ex[name][d])).sort();
+function refDate(name,date){ const ds=sessDates(name).filter(d=>d!==date), before=ds.filter(d=>d<date); return before.length?before[before.length-1]:(ds.length?ds[ds.length-1]:null); }
+function bestOf(name,excl){
+  let b=null;
+  sessDates(name).forEach(d=>{ if(d===excl) return; getSess(name,d).s.forEach(x=>{ if(x&&x[0]>0&&(!b||x[0]>b.kg||(x[0]===b.kg&&x[1]>b.reps))) b={kg:x[0],reps:x[1],date:d}; }); });
+  return b;
+}
+function setEntry(name,date,idx,f,v){
+  const ex=LOG.ex[name]||(LOG.ex[name]={});
+  const se=ex[date]||(ex[date]={s:[]});
+  const cur=se.s[idx]||[0,0]; cur[f]=v; se.s[idx]=cur;
+  for(let i=0;i<se.s.length;i++) if(!se.s[i]) se.s[i]=[0,0];
+  if(!se.s.some(x=>x[0]>0||x[1]>0)) delete ex[date];
+  saveLog();
+}
+/* one-time: pull weights typed into the earlier (weekly-only) version into the permanent log */
+function migrateOld(){
+  if(LOG.mig) return;
+  try{
+    for(let i=0;i<localStorage.length;i++){
+      const key=localStorage.key(i), m=/^wp2-(\d{4})-(\d+)-(\d+)$/.exec(key||''); if(!m) continue;
+      const v=JSON.parse(localStorage.getItem(key)||'null'); if(!v||!v.rec) continue;
+      Object.keys(v.rec).forEach(rk=>{
+        const kg=v.rec[rk]&&v.rec[rk].kg; if(!(kg>0)) return;
+        const [dd,ei,si]=rk.split('-'), di=DAYS.findIndex(x=>x.id===dd); if(di<0) return;
+        const e=DAYS[di].ex[+ei]; if(!e||noWeight(e)) return;
+        const date=iso(new Date(+m[1],+m[2]-1,+m[3]+di));
+        const ex=LOG.ex[logName(e)]=LOG.ex[logName(e)]||{}; const se=ex[date]=ex[date]||{s:[]};
+        if(!se.s[+si]||!(se.s[+si][0]>0)) se.s[+si]=[kg,0];
+      });
+    }
+  }catch(err){}
+  Object.values(LOG.ex).forEach(o=>Object.values(o).forEach(se=>{ for(let i=0;i<se.s.length;i++) if(!se.s[i]) se.s[i]=[0,0]; }));
+  LOG.mig=1; saveLog();
+}
+/* plan name */
+const NAMEKEY='wp-name', DEFAULT_NAME='Jibin Daniel’s Workout Plan';
+let planName=DEFAULT_NAME;
+try{ const n=localStorage.getItem(NAMEKEY); if(n&&n.trim()) planName=n.trim().slice(0,60); }catch(e){}
 document.getElementById('weekLabel').textContent='Week of '+WS.toLocaleDateString(undefined,{month:'short',day:'numeric'});
 
 const k=(d,i,s)=>`${d}-${i}-${s}`;
@@ -507,6 +661,7 @@ const dayOf=key=>key.startsWith('warm-')?key.slice(5):key.split('-')[0];
 const exKeys=(d,i)=>Array.from({length:d.ex[i].sets},(_,s)=>k(d.id,i,s));
 const dayKeys=d=>d.ex.flatMap((_,i)=>exKeys(d,i));
 const dayById=id=>DAYS.find(d=>d.id===id);
+migrateOld();
 const isDone=key=>(S.rec[key]?.w||0)>0 && !(S.A&&S.A.type==='work'&&S.A.key===key);
 const dayTotals=d=>{const ks=dayKeys(d);return {t:ks.length,c:ks.filter(isDone).length};};
 
@@ -530,7 +685,23 @@ function fmt(ms){
   const t=Math.max(0,Math.floor(ms/1000)), h=Math.floor(t/3600), m=Math.floor(t%3600/60), s=t%60;
   return h?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${m}:${String(s).padStart(2,'0')}`;
 }
-const V=(tok,dash)=>`<b data-v="${tok}"${dash?' data-dash="1"':''}>${fmt(val(tok,Date.now()))}</b>`;
+const SPECIAL=/^(top|vol|pb|dvol|dlog):/;
+function vText(tok,now){
+  const t=tok.split(':')[0], arg=tok.split(':')[1];
+  if(t==='top'||t==='vol'||t==='pb'){
+    const [dd,i]=arg.split('.'), d=dayById(dd), e=d.ex[+i], nm=logName(e), se=getSess(nm,dateOf(d.id));
+    if(t==='top') return sessHas(se)?fmtWt(sessTop(se)):'—';
+    if(t==='vol'){ const v=se?sessVol(se):0; return v>0?fmtVol(v):'—'; }
+    const b=bestOf(nm,null); return b?fmtWt(b.kg)+(b.reps?' × '+b.reps:'')+' · '+fmtDate(b.date):'—';
+  }
+  if(t==='dvol'||t==='dlog'){
+    const d=dayById(arg); let vol=0,n=0,tot=0;
+    d.ex.forEach(e=>{ if(noWeight(e)) return; const se=getSess(logName(e),dateOf(d.id)); tot+=e.sets; if(se){ vol+=sessVol(se); n+=se.s.filter(x=>x&&x[0]>0).length; } });
+    return t==='dvol'?(vol>0?fmtVol(vol):'—'):`${n} / ${tot}`;
+  }
+  return fmt(val(tok,now));
+}
+const V=(tok,dash)=>`<b data-v="${tok}"${dash?' data-dash="1"':''}>${vText(tok,Date.now())}</b>`;
 
 /* ---------- Timer actions ---------- */
 function addRec(key,f,ms){ S.rec[key]=S.rec[key]||{w:0,r:0}; S.rec[key][f]+=Math.max(0,ms); }
@@ -616,6 +787,75 @@ function delta(cur,prev){
   const d=cur-prev; if(Math.abs(d)<1000) return '<small>Same as last week</small>';
   return `<small class="${d>0?'up':'down'}">${d>0?'+':'−'}${fmt(Math.abs(d))} vs last week</small>`;
 }
+const LOGEX=(()=>{ const seen={}, out=[]; DAYS.forEach(d=>d.ex.forEach(e=>{ if(noWeight(e)) return; const nm=logName(e); if(!seen[nm]){ seen[nm]=1; out.push({nm,label:nm}); } })); return out; })();
+const wkRange=start=>{ const e=new Date(start); e.setDate(e.getDate()+6); return [iso(start),iso(e)]; };
+const prevWS=()=>{ const p=new Date(WS); p.setDate(p.getDate()-7); return p; };
+function weekVolume(start){ const [a,b]=wkRange(start); let v=0; LOGEX.forEach(({nm})=>sessDates(nm).forEach(d=>{ if(d>=a&&d<=b) v+=sessVol(getSess(nm,d)); })); return v; }
+function weekPBs(start){
+  const [a,b]=wkRange(start); let c=0;
+  LOGEX.forEach(({nm})=>{ const ds=sessDates(nm); ds.forEach((d,ix)=>{ if(d<a||d>b) return; let prior=0; for(let j=0;j<ix;j++) prior=Math.max(prior,sessTop(getSess(nm,ds[j]))); if(prior>0&&sessTop(getSess(nm,d))>prior) c++; }); });
+  return c;
+}
+function volTiles(){
+  const vc=weekVolume(WS), vp=weekVolume(prevWS());
+  const dl=vp>0&&vc>0?`<small class="${vc>=vp?'up':'down'}">${vc>=vp?'+':'−'}${fmtVol(Math.abs(vc-vp))} vs last week</small>`:'';
+  return `<div class="stat"><span>Volume lifted</span><b>${vc>0?fmtVol(vc):'—'}</b>${dl}</div>
+        <div class="stat"><span>Personal bests</span><b>${weekPBs(WS)}</b><small>new this week</small></div>`;
+}
+function progressHtml(){
+  const [a,b]=wkRange(WS), rows=[];
+  LOGEX.forEach(({nm,label})=>{
+    const ds=sessDates(nm); if(!ds.length) return;
+    const inW=ds.filter(d=>d>=a&&d<=b), cur=inW.length?inW[inW.length-1]:null;
+    const prev=cur?(ds.indexOf(cur)>0?ds[ds.indexOf(cur)-1]:null):ds[ds.length-1];
+    rows.push({nm,label,cur,prev,ds});
+  });
+  if(!rows.length) return '<p class="empty">No weights logged yet. Enter a weight on any set and every exercise is compared with its previous session here.</p>';
+  rows.sort((x,y)=>(y.cur?1:0)-(x.cur?1:0));
+  let up=0,down=0,same=0;
+  const body=rows.map(r=>{
+    const cs=r.cur&&getSess(r.nm,r.cur), ps=r.prev&&getSess(r.nm,r.prev);
+    const ct=cs?sessTop(cs):0, pt=ps?sessTop(ps):0;
+    let chg, pbTag='';
+    if(!cs) chg='<span class="same">Not yet</span>';
+    else if(!ps) chg='<span class="same">First log</span>';
+    else {
+      const df=toDisp(ct)-toDisp(pt), cv=sessVol(cs), pv=sessVol(ps);
+      const vol=cv>0&&pv>0?`<small>volume ${cv>=pv?'+':'−'}${Math.round(Math.abs(cv-pv)/pv*100)}%</small>`:'';
+      if(Math.abs(df)<0.05){ same++; chg=`<span class="same">= Same</span>${vol}`; }
+      else if(df>0){ up++; chg=`<span class="up">▲ +${numStr(df)} ${UNIT}</span>${vol}`; }
+      else { down++; chg=`<span class="down">▼ −${numStr(-df)} ${UNIT}</span>${vol}`; }
+      const prior=Math.max(0,...r.ds.slice(0,r.ds.indexOf(r.cur)).map(d=>sessTop(getSess(r.nm,d))));
+      if(prior>0&&ct>prior) pbTag=' <span class="pb">PB</span>';
+    }
+    return `<li><div class="pn"><b>${esc(r.label)}${pbTag}</b><span>${cs?fmtWt(ct)+' this week':'Not done this week'}${ps?' \u00b7 was '+fmtWt(pt)+' ('+fmtDate(r.prev)+')':''}</span></div><div class="chg">${chg}</div></li>`;
+  }).join('');
+  return `<p class="status"><span class="up">▲ ${up} higher</span> · = ${same} same · <span class="down">▼ ${down} lower</span> than last session</p>
+    <ul class="prog">${body}</ul>`;
+}
+let chartEx=null;
+function chartSvg(){
+  const names=LOGEX.filter(x=>sessDates(x.nm).length);
+  if(!names.length) return '<p class="empty">Log a weight on any exercise and its progress chart shows up here.</p>';
+  if(!names.some(x=>x.nm===chartEx)) chartEx=names[0].nm;
+  const ds=sessDates(chartEx), pts=ds.map(d=>({d,v:toDisp(sessTop(getSess(chartEx,d)))}));
+  const W=320,H=150,L=40,R=12,T=14,B=26;
+  const mn=Math.min(...pts.map(p=>p.v)), mx=Math.max(...pts.map(p=>p.v));
+  let lo=mn, hi=mx; if(hi-lo<1){ lo-=1; hi+=1; } const pad=(hi-lo)*.14; lo-=pad; hi+=pad;
+  const X=i=>pts.length===1?(L+(W-L-R)/2):L+(W-L-R)*i/(pts.length-1);
+  const Y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  const line=pts.map((p,i)=>`${i?'L':'M'}${X(i).toFixed(1)} ${Y(p.v).toFixed(1)}`).join(' ');
+  const dots=pts.map((p,i)=>`<circle class="${p.v===mx?'pbdot':'dot'}" cx="${X(i).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="${p.v===mx?5:3.5}"><title>${fmtDate(p.d,1)}: ${numStr(p.v)} ${UNIT}</title></circle>`).join('');
+  const first=pts[0], last=pts[pts.length-1], diff=last.v-first.v;
+  const summary=pts.length>1
+    ?`${numStr(first.v)} → ${numStr(last.v)} ${UNIT} (${Math.abs(diff)<0.05?'no change':(diff>0?'+':'−')+numStr(Math.abs(diff))+' '+UNIT}) over ${pts.length} sessions · best ${numStr(mx)} ${UNIT}`
+    :`One session so far: ${numStr(last.v)} ${UNIT}. Log another to see the trend.`;
+  return `<svg class="lchart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Top weight per session for ${esc(chartEx)}. ${esc(summary)}">
+    <line class="grid" x1="${L}" x2="${W-R}" y1="${Y(mx).toFixed(1)}" y2="${Y(mx).toFixed(1)}"/><line class="grid" x1="${L}" x2="${W-R}" y1="${Y(mn).toFixed(1)}" y2="${Y(mn).toFixed(1)}"/>
+    <text x="${L-6}" y="${(Y(mx)+3).toFixed(1)}" text-anchor="end">${numStr(mx)}</text><text x="${L-6}" y="${(Y(mn)+3).toFixed(1)}" text-anchor="end">${numStr(mn)}</text>
+    <text x="${L}" y="${H-8}" text-anchor="start">${fmtDate(first.d)}</text>${pts.length>1?`<text x="${W-R}" y="${H-8}" text-anchor="end">${fmtDate(last.d)}</text>`:''}
+    <path class="ln" d="${line}"/>${dots}</svg><p class="status">${summary}</p>`;
+}
 function renderStats(){
   const now=Date.now(), st=weekStats(S.rec,S.A,now);
   const pr=prevWeekRec(), ps=pr?weekStats(pr,null,now):null;
@@ -642,6 +882,7 @@ function renderStats(){
         <div class="stat"><span>Warm-up</span><b>${fmt(st.warm)}</b>${delta(st.warm,pv('warm'))}</div>
         <div class="stat"><span>Sets done</span><b>${st.sets} / ${st.planned}</b><small>${st.planned?Math.round(st.sets/st.planned*100):0}% of the plan</small></div>
         <div class="stat"><span>Days complete</span><b>${st.daysDone} / ${DAYS.length}</b><small>${trained.length} day${trained.length===1?'':'s'} trained</small></div>
+        ${volTiles()}
       </div>
     </section>
 
@@ -668,6 +909,13 @@ function renderStats(){
       <div class="chart">${muscles.map(([m,v])=>`<div class="mrow"><span>${NAMES[m]}</span><div class="mbar"><i style="width:${pct(v.done,v.planned)}"></i></div><span class="t">${v.done}/${v.planned}</span></div>`).join('')}</div>
     </section>
 
+    <section class="totals"><h3>Weights vs last session</h3>${progressHtml()}</section>
+
+    <section class="totals"><h3>Progress over time</h3>
+      <div class="picker"><label class="lbl2" for="chartSel">Exercise</label><select id="chartSel">${LOGEX.filter(x=>sessDates(x.nm).length).map(x=>`<option value="${esc(x.nm)}"${x.nm===chartEx?' selected':''}>${esc(x.label)}</option>`).join('')}</select></div>
+      <div id="chartBox">${chartSvg()}</div>
+    </section>
+
     <section class="totals"><h3>Day by day</h3>
       <div class="tblwrap"><table><thead><tr><th>Day</th><th class="n">Sets</th><th class="n">Work</th><th class="n">Rest</th><th class="n">Warm</th><th class="n">Total</th></tr></thead><tbody>
         ${st.days.map(x=>`<tr><td>${x.d.name}</td><td class="n">${x.sets}/${x.planned}</td><td class="n">${fmt(x.work)}</td><td class="n">${fmt(x.rest)}</td><td class="n">${fmt(x.warm)}</td><td class="n">${fmt(x.total)}</td></tr>`).join('')}
@@ -681,7 +929,7 @@ function renderWeek(){
   document.getElementById('weekCount').textContent=`${c} / ${t} sets`;
   document.getElementById('weekFill').style.width=(t?c/t*100:0)+'%';
 }
-function rowHtml(key,label,startLabel,finishLabel){
+function rowHtml(key,label,startLabel,finishLabel,wctx){
   const A=S.A;
   const run=A&&A.type==='work'&&A.key===key;
   const done=isDone(key);
@@ -691,7 +939,33 @@ function rowHtml(key,label,startLabel,finishLabel){
   if(run){ tm=`${V('w:'+key)} working`; btn=`<button class="sbtn fin" type="button" data-act="finish" data-k="${key}">${finishLabel}</button>`; }
   else if(done){ tm=`Work ${V('w:'+key)}<br><span class="r">Rest ${V('r:'+key,1)}${resting?' …':''}</span>`; }
   else { btn=`<button class="sbtn" type="button" data-act="start" data-k="${key}">${startLabel}</button>`; }
-  return `<div class="${cls}"><span class="nm"><span class="box">${check}</span>${label}</span><span class="tm">${tm}</span>${btn}</div>`;
+  let wrow='';
+  if(wctx){
+    const e=dayById(wctx.d).ex[wctx.i], nm=logName(e), date=dateOf(wctx.d);
+    const se=getSess(nm,date), cur=se&&se.s[wctx.s];
+    const rd=refDate(nm,date), rs=rd&&getSess(nm,rd), ph=rs?(rs.s[wctx.s]||rs.s[rs.s.length-1]):null;
+    wrow=`<div class="wrow" data-d="${wctx.d}" data-i="${wctx.i}" data-s="${wctx.s}">
+      <input class="wgt-in" id="wi-${key}" type="number" inputmode="decimal" step="any" min="0" value="${cur&&cur[0]>0?numStr(toDisp(cur[0])):''}" placeholder="${ph&&ph[0]>0?numStr(toDisp(ph[0])):'0'}" aria-label="${label} weight in ${UNIT}"><span class="u">${UNIT}</span>
+      <input class="reps-in" id="ri-${key}" type="number" inputmode="numeric" step="1" min="0" value="${cur&&cur[1]>0?cur[1]:''}" placeholder="${ph&&ph[1]>0?ph[1]:'0'}" aria-label="${label} reps"><span class="x">reps</span>
+      <span class="pb" hidden>New PB</span></div>`;
+  }
+  return `<div class="${cls}"><span class="nm"><span class="box">${check}</span>${label}</span><span class="tm">${tm}</span>${btn}${wrow}</div>`;
+}
+function histHtml(d,i,e){
+  if(noWeight(e)) return '';
+  const nm=logName(e), cur=dateOf(d.id);
+  const prev=sessDates(nm).filter(x=>x!==cur).reverse().slice(0,4);
+  const list=prev.map(ds=>{ const se=getSess(nm,ds); const parts=se.s.filter(x=>x&&x[0]>0).map(x=>numStr(toDisp(x[0]))+(x[1]>0?'×'+x[1]:'')); return `<li><span>${fmtDate(ds,1)}</span><b>${parts.join(' · ')} ${UNIT}</b></li>`; }).join('');
+  return `<div class="hist"><div class="pbline"><span class="lbl">Personal best</span><b data-v="pb:${d.id}.${i}">${vText(`pb:${d.id}.${i}`)}</b></div>
+    ${prev.length?`<span class="lbl">Last sessions</span><ul class="sess">${list}</ul>`:'<p class="empty">No earlier sessions logged yet. Everything you enter below is kept for next time.</p>'}</div>
+    <input class="note-in" type="text" maxlength="140" data-d="${d.id}" data-i="${i}" value="${esc(LOG.notes[nm]||'')}" placeholder="Notes: seat setting, machine number…" aria-label="Notes for ${esc(e.n)}">`;
+}
+function updatePB(){
+  dayEl.querySelectorAll('.wrow').forEach(w=>{
+    const d=dayById(w.dataset.d), nm=logName(d.ex[+w.dataset.i]), date=dateOf(d.id);
+    const se=getSess(nm,date), x=se&&se.s[+w.dataset.s], pr=bestOf(nm,date);
+    w.querySelector('.pb').hidden=!(x&&x[0]>0&&pr&&x[0]>pr.kg);
+  });
 }
 let figs=[];
 function renderDay(){
@@ -717,7 +991,7 @@ function renderDay(){
     const keys=exKeys(d,i);
     const done=keys.every(isDone);
     const live=S.A&&keys.some(x=>S.A.key===x||S.A.from===x);
-    const rows=keys.map((key,s)=>rowHtml(key,e.sets>1?`Set ${s+1}`:'Session',e.sets>1?`Start`:'Start',e.sets>1?`Finish`:'Finish')).join('');
+    const rows=keys.map((key,s)=>rowHtml(key,e.sets>1?`Set ${s+1}`:'Session','Start','Finish',noWeight(e)?null:{d:d.id,i,s})).join('');
     html+=`<article class="ex${done?' done':''}${live?' live':''}">
       <div class="fig" tabindex="0" role="button" aria-label="${e.n} form demo, tap to pause" data-fig="${e.fig}">
         <span class="tag">${FIGS[e.fig].tag}</span><svg viewBox="0 0 200 150" aria-hidden="true"></svg><span class="hint">Tap to pause</span></div>
@@ -727,8 +1001,9 @@ function renderDay(){
         ${musclesHtml(e.n)}
         <ol class="cues">${e.cues.map(x=>`<li>${x}</li>`).join('')}</ol>
         <p class="avoid"><b>Avoid:</b> ${e.avoid}</p>
+        ${histHtml(d,i,e)}
         <div class="setlist">${rows}</div>
-        <div class="exsum"><span class="w">Workout done ${V(`exw:${d.id}.${i}`)} min</span><span class="rr">Rest taken ${V(`exr:${d.id}.${i}`)} min</span><button class="redo" type="button" data-redo="${i}">Redo</button></div>
+        <div class="exsum"><span class="w">Workout done ${V(`exw:${d.id}.${i}`)} min</span><span class="rr">Rest taken ${V(`exr:${d.id}.${i}`)} min</span>${noWeight(e)?'':`<span class="tw">Top weight ${V(`top:${d.id}.${i}`)}</span><span class="tw">Volume ${V(`vol:${d.id}.${i}`)}</span>`}<button class="redo" type="button" data-redo="${i}">Redo</button></div>
       </div></article>`;
   });
 
@@ -739,14 +1014,17 @@ function renderDay(){
       <div class="stat r"><span>Rest time</span>${V('dr:'+d.id)}</div>
       <div class="stat"><span>Warm-up</span>${V('dwarm:'+d.id)}</div>
       <div class="stat"><span>Total time</span>${V('dt:'+d.id)}</div>
+      <div class="stat"><span>Volume lifted</span>${V('dvol:'+d.id)}</div>
+      <div class="stat"><span>Weights logged</span>${V('dlog:'+d.id)}</div>
     </div>
-    <div class="tblwrap"><table><thead><tr><th>Block</th><th class="n">Work</th><th class="n">Rest</th></tr></thead><tbody>
-      <tr><td>Warm-up</td><td class="n">${V('w:'+wkey)}</td><td class="n">${V('r:'+wkey)}</td></tr>
-      ${d.ex.map((e,i)=>`<tr><td>${e.n}</td><td class="n">${V(`exw:${d.id}.${i}`)}</td><td class="n">${V(`exr:${d.id}.${i}`)}</td></tr>`).join('')}
-    </tbody><tfoot><tr><td>Total</td><td class="n">${V('dw:'+d.id)}</td><td class="n">${V('dr:'+d.id)}</td></tr></tfoot></table></div>
+    <div class="tblwrap"><table><thead><tr><th>Block</th><th class="n">Work</th><th class="n">Rest</th><th class="n">Top wt</th></tr></thead><tbody>
+      <tr><td>Warm-up</td><td class="n">${V('w:'+wkey)}</td><td class="n">${V('r:'+wkey)}</td><td class="n">—</td></tr>
+      ${d.ex.map((e,i)=>`<tr><td>${e.n}</td><td class="n">${V(`exw:${d.id}.${i}`)}</td><td class="n">${V(`exr:${d.id}.${i}`)}</td><td class="n">${noWeight(e)?'—':V(`top:${d.id}.${i}`)}</td></tr>`).join('')}
+    </tbody><tfoot><tr><td>Total</td><td class="n">${V('dw:'+d.id)}</td><td class="n">${V('dr:'+d.id)}</td><td class="n"></td></tr></tfoot></table></div>
   </section></div>`;
 
   dayEl.innerHTML=html;
+  updatePB();
   figs=[...dayEl.querySelectorAll('.fig')].map((el,i)=>({el,svg:el.querySelector('svg'),f:FIGS[el.dataset.fig],paused:false,phase:i*.17,hint:el.querySelector('.hint')}));
   drawAll(performance.now(),true);
 }
@@ -802,9 +1080,9 @@ if(!reduce) (function loop(now){ drawAll(now,false); requestAnimationFrame(loop)
 
 function tick(){
   const now=Date.now();
-  dayEl.querySelectorAll('[data-v]').forEach(el=>{ const v=val(el.dataset.v,now); el.textContent=(el.dataset.dash&&v<1000)?'—':fmt(v); });
+  dayEl.querySelectorAll('[data-v]').forEach(el=>{ if(SPECIAL.test(el.dataset.v)){ el.textContent=vText(el.dataset.v,now); return; } const v=val(el.dataset.v,now); el.textContent=(el.dataset.dash&&v<1000)?'—':fmt(v); });
   $('bTime').textContent=fmt(barTime(now));
-  if(current===STATS&&S.A&&now-lastStats>1000){ lastStats=now; renderStats(); }
+  if(current===STATS&&S.A&&now-lastStats>1000&&!(document.activeElement&&document.activeElement.id==='chartSel')){ lastStats=now; renderStats(); }
 }
 let lastStats=0;
 setInterval(tick,250);
@@ -815,7 +1093,23 @@ tabsEl.addEventListener('click',e=>{
   current=+b.dataset.i; try{history.replaceState(null,'','#'+(current===STATS?'stats':DAYS[current].id));}catch(_){}
   renderTabs(); renderDay(); renderBar(); tick(); window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
 });
+document.addEventListener('input',ev=>{
+  const t=ev.target; if(!t.classList) return;
+  if(t.classList.contains('wgt-in')||t.classList.contains('reps-in')){
+    const w=t.closest('.wrow'), d=dayById(w.dataset.d), e=d.ex[+w.dataset.i], isW=t.classList.contains('wgt-in'), v=parseFloat(t.value);
+    setEntry(logName(e),dateOf(d.id),+w.dataset.s,isW?0:1,isW?(v>0?fromDisp(v):0):(v>0?Math.round(v):0));
+    updatePB(); tick();
+  } else if(t.classList.contains('note-in')){
+    const e=dayById(t.dataset.d).ex[+t.dataset.i], txt=t.value.slice(0,140).trim();
+    if(txt) LOG.notes[logName(e)]=txt; else delete LOG.notes[logName(e)];
+    saveLog();
+  }
+});
+document.addEventListener('change',ev=>{
+  if(ev.target.id==='chartSel'){ chartEx=ev.target.value; $('chartBox').innerHTML=chartSvg(); }
+});
 document.addEventListener('click',e=>{
+  const u=e.target.closest('[data-unit]'); if(u){ setUnit(u.dataset.unit); return; }
   const a=e.target.closest('[data-act]');
   if(a){
     if(a.dataset.act==='start') startWork(a.dataset.k);
@@ -837,14 +1131,65 @@ function togglePause(el){ const o=figs.find(x=>x.el===el); if(!o||reduce) return
 
 const resetBtn=$('reset'); let armed=false, armTimer;
 resetBtn.addEventListener('click',()=>{
-  if(!armed){ armed=true; resetBtn.classList.add('confirm'); resetBtn.textContent='Tap again to clear every record this week';
-    armTimer=setTimeout(()=>{armed=false;resetBtn.classList.remove('confirm');resetBtn.textContent="Clear this week's records";},4000); return; }
+  if(!armed){ armed=true; resetBtn.classList.add('confirm'); resetBtn.textContent='Tap again: clears times only, weights stay';
+    armTimer=setTimeout(()=>{armed=false;resetBtn.classList.remove('confirm');resetBtn.textContent="Clear this week's times";},4000); return; }
   clearTimeout(armTimer); armed=false; S={rec:{},A:null}; save(); keepAwake(false); resetBtn.classList.remove('confirm'); resetBtn.textContent='Cleared'; refresh();
-  setTimeout(()=>resetBtn.textContent="Clear this week's records",1500);
+  setTimeout(()=>resetBtn.textContent="Clear this week's times",1500);
 });
 
+document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.unit===UNIT)));
+
+/* plan name */
+function applyName(){ $('planName').textContent=planName; document.title=planName; }
+const nameForm=$('nameForm'), nameInput=$('nameInput'), editBtn=$('editName');
+function closeName(){ nameForm.hidden=true; editBtn.hidden=false; editBtn.focus(); }
+editBtn.addEventListener('click',()=>{ nameInput.value=planName; nameForm.hidden=false; editBtn.hidden=true; nameInput.focus(); nameInput.select(); });
+nameForm.addEventListener('submit',ev=>{ ev.preventDefault(); planName=nameInput.value.trim().slice(0,60)||DEFAULT_NAME; try{ localStorage.setItem(NAMEKEY,planName); }catch(e){} applyName(); closeName(); });
+$('nameCancel').addEventListener('click',closeName);
+nameInput.addEventListener('keydown',ev=>{ if(ev.key==='Escape') closeName(); });
+applyName();
+
+/* backup: export / import the weight log */
+const logMsg=$('logMsg');
+function showBak(extra){ logMsg.textContent=(extra?extra+' ':'')+(LOG.bak?'Last backup: '+fmtDate(LOG.bak)+'.':'No backup yet.'); }
+$('exportBtn').addEventListener('click',()=>{
+  const data={app:'workout-plan',version:1,exported:new Date().toISOString(),name:planName,unit:UNIT,exercises:LOG.ex,notes:LOG.notes};
+  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,1)],{type:'application/json'}));
+  const a=document.createElement('a'); a.href=url; a.download='workout-log-'+iso(new Date())+'.json'; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  LOG.bak=iso(new Date()); saveLog(); showBak('Exported.');
+});
+$('importBtn').addEventListener('click',()=>$('importFile').click());
+const clampN=(v,max)=>{ const x=Number(v); return isFinite(x)?Math.min(max,Math.max(0,x)):0; };
+$('importFile').addEventListener('change',ev=>{
+  const f=ev.target.files&&ev.target.files[0]; ev.target.value=''; if(!f) return;
+  if(f.size>2e6){ showBak('That file is too large to be a workout log.'); return; }
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const j=JSON.parse(rd.result);
+      if(!j||j.app!=='workout-plan'||!j.exercises||typeof j.exercises!=='object') throw new Error('format');
+      const known=new Set(LOGEX.map(x=>x.nm)); let n=0;
+      Object.keys(j.exercises).forEach(nm=>{
+        if(!known.has(nm)) return; const src=j.exercises[nm]; if(!src||typeof src!=='object') return;
+        Object.keys(src).forEach(ds=>{
+          if(!/^\d{4}-\d{2}-\d{2}$/.test(ds)) return;
+          const s=src[ds]&&src[ds].s; if(!Array.isArray(s)||s.length>20) return;
+          const clean=s.map(x=>Array.isArray(x)?[Math.round(clampN(x[0],2000)*1000)/1000,Math.round(clampN(x[1],500))]:[0,0]);
+          if(!clean.some(x=>x[0]>0)) return;
+          (LOG.ex[nm]=LOG.ex[nm]||{})[ds]={s:clean}; n++;
+        });
+      });
+      if(j.notes&&typeof j.notes==='object') Object.keys(j.notes).forEach(nm=>{ if(known.has(nm)&&typeof j.notes[nm]==='string'&&j.notes[nm].trim()) LOG.notes[nm]=j.notes[nm].trim().slice(0,140); });
+      if(typeof j.name==='string'&&j.name.trim()){ planName=j.name.trim().slice(0,60); try{ localStorage.setItem(NAMEKEY,planName); }catch(e){} applyName(); }
+      saveLog(); refresh(); showBak(`Imported ${n} session${n===1?'':'s'}.`);
+    }catch(err){ showBak('That file is not a workout log export.'); }
+  };
+  rd.readAsText(f);
+});
+showBak();
 if(S.A) keepAwake(true);
 refresh();
 </script>
-
-</body></html>
+</body>
+</html>
